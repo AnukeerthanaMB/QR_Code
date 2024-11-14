@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+            background-color: #FFFAF0;
+        }
+        main{
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color:white;
+        }
+
+        button{
+            width: 100%;
+            max-width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 5px solid #DEB48C;
+            border-radius: 4px;
+            background-color:#DEB48C;
+            
+        }
+
+        button:hover{
+            background-color:#F5DEB3;
+        }
+
+        .qr-img{
+            width: 100%;
+            max-width: 300px;
+            margin: 1 auto;
+        }
+
+        .qr-img img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>
+          
+            QR Code Generator
+           
+        </h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="data" id="data" placeholder="write something or enter url">
+            <button>Generate</button>
+        </form>
+
+        <div class="qr-img">
+            {% if img_name %}
+                <img src="/static/{{ img_name }}" alt="qr code">
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
